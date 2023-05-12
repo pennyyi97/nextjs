@@ -6,13 +6,7 @@ import { useEffect, useState } from 'react';
 export default function Home({ results }: any) {
   const router = useRouter();
   const onClick = (id:any, title:any) => {
-    router.push({
-      pathname: `/movies/${id}`,
-      query:{
-        title:title,
-      }
-    }, `/movies/${id}`
-    );
+    router.push(`/movies/${title}/${id}`);
   }
   return (
     <div className='container'>
@@ -21,7 +15,7 @@ export default function Home({ results }: any) {
         <div onClick={()=>onClick(movie.id, movie.original_title)} className='movie' key={movie.id} >
           <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
         
-          <h4><Link href={`/movies/${movie.id}`} legacyBehavior><a>{movie.original_title}</a></Link></h4>
+          <h4><Link href={`/movies/${movie.original_title}/${movie.id}`} legacyBehavior><a>{movie.original_title}</a></Link></h4>
         </div>
       ))}
       <style jsx>{`
